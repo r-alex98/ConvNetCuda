@@ -4,11 +4,11 @@
 
 extern "C"
 {
-    __global__ void pad(float* x, float* result, int value, int w, int chw, int hw, desc res_desc, int n)
+    __global__ void pad(float* x, float* result, int value, int w, int chw, int hw, desc res_desc)
     {
         int tid = blockIdx.x * blockDim.x + threadIdx.x;
 
-        while (tid < n)
+        while (tid < res_desc.size)
         {
             int b = tid / chw;
             int c = tid % chw / hw;
